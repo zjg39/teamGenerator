@@ -1,0 +1,41 @@
+// Manager Test
+
+const Manager = require('../team/manager');
+
+describe('Manager',() =>{
+    describe('name',() => {
+        it('Should return the name you give', () => {
+            const managerTest = new Manager('Jacob', '3', 'manager@protonmail.com', '555-5555', 'Manager');
+            const testName = 'Jacob';
+            expect(testName).toEqual(managerTest.testName());
+        })
+    })
+    describe('id',() => {
+        it('Should return the name you give', () => {
+            const managerTest = new Manager('Jacob', '3', 'manager@protonmail.com', '555-5555', 'Manager');
+            const testId = '2';
+            expect(testId).toEqual(managerTest.testId());
+        })
+    })
+    describe('email',() => {
+        it('Should return the name you give', () => {
+            const managerTest = new Manager('Jacob', '3', 'manager@protonmail.com', '555-5555', 'Manager');
+            const testEmail = 'intern@protonmail.com';
+            expect(testEmail).toEqual(managerTest.testEmail());
+        })
+    })
+    describe('phone',() => {
+        it('Should return the name you give', () => {
+            const managerTest = new Manager('Jacob', '3', 'manager@protonmail.com', '555-5555', 'Manager');
+            const testPhone = '555-5555';
+            expect(testPhone).toEqual(managerTest.testSchool());
+        })
+    })
+    describe('position',() => {
+        it('Should return the name you give', () => {
+            const managerTest = new Manager('Jacob', '3', 'manager@protonmail.com', '555-5555', 'Manager');
+            const testPosition = 'Manager';
+            expect(testPosition).toEqual(managerTest.testPosition());
+        })
+    })
+})

@@ -111,7 +111,7 @@ function init() {
         if(choices.add === "add a member") {
             addMember();
         } else {
-            createHTML();
+            makeHTML();
         }
     })
     };
@@ -156,14 +156,14 @@ function init() {
               init();
             });
           } else {
-              createHTML();
+              makeHTML();
           }
         });
       }
 
       init();
 
-    function createHTML () {
+    function makeHTML() {
          if(!fs.existsSync(OUTPUT_DIR)) {
              fs.mkdirSync(OUTPUT_DIR);
          }
