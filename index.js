@@ -7,12 +7,8 @@ const manager = require('./team/manager');
 const engineer = require('./team/engineer');
 const intern = require('./team/intern');
 
-// const { eventNames } = require("process")
-
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
-// const render = require("./lib/htmlRenderer");
 
 let buildTeam = [];
 
@@ -163,11 +159,4 @@ function init() {
 
       init();
 
-    function makeHTML() {
-         if(!fs.existsSync(OUTPUT_DIR)) {
-             fs.mkdirSync(OUTPUT_DIR);
-         }
-console.log(teamMembers);
-         fs.writeFileSync(outputPath, render(teamMembers),  "utf-8");
-
-    }
+      function makeHTML() {};
