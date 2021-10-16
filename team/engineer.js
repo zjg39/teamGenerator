@@ -9,7 +9,7 @@ class Engineer extends Employee{
         this.position = 'Engineer';
     }
     getGithubId() {
-        return this.gitHub;
+        return this.gitHubId;
     }
 }
 module.exports = Engineer; 
