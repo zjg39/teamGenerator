@@ -8,7 +8,7 @@ class Engineer extends Employee{
         this.gitHubId = gitHubId;
         this.position = 'Engineer';
     }
-    getGithubId() {
+    getGitHubId() {
         return this.gitHubId;
     }
 }

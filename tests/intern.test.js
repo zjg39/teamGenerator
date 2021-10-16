@@ -7,35 +7,35 @@ describe('Intern',() =>{
         it('Should return the name you give', () => {
             const internTest = new Intern('Justin', '2', 'intern@protonmail.com', 'school university', 'intern');
             const testName = 'Justin';
-            expect(testName).toEqual(internTest.testName());
+            expect(testName).toEqual(internTest.getName());
         })
     })
     describe('id',() => {
         it('Should return the name you give', () => {
             const internTest = new Intern('Justin', '2', 'intern@protonmail.com', 'school university', 'intern');
             const testId = '2';
-            expect(testId).toEqual(internTest.testId());
+            expect(testId).toEqual(internTest.getId());
         })
     })
     describe('email',() => {
         it('Should return the name you give', () => {
             const internTest = new Intern('Justin', '2', 'intern@protonmail.com', 'school university', 'intern');
             const testEmail = 'intern@protonmail.com';
-            expect(testEmail).toEqual(internTest.testEmail());
+            expect(testEmail).toEqual(internTest.getEmail());
         })
     })
     describe('school',() => {
         it('Should return the name you give', () => {
             const internTest = new Intern('Justin', '2', 'intern@protonmail.com', 'school university', 'intern');
             const testSchool = 'school university';
-            expect(testSchool).toEqual(internTest.testSchool());
+            expect(testSchool).toEqual(internTest.getSchool());
         })
     })
     describe('position',() => {
         it('Should return the name you give', () => {
             const internTest = new Intern('Justin', '2', 'intern@protonmail.com', 'school university', 'intern');
             const testPosition = 'Intern';
-            expect(testPosition).toEqual(internTest.testPosition());
+            expect(testPosition).toEqual(internTest.getPosition());
         })
     })
 })

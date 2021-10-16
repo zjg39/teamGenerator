@@ -2,40 +2,40 @@
 
 const Engineer = require('../team/engineer');
 
-describe('Engineer',() =>{
+describe('engineer',() =>{
     describe('name',() => {
         it('Should return the name you give', () => {
-            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer', 'engineerGit');
-            const testName = 'John';
-            expect(testName).toEqual(engineerTest.testName());
+            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer');
+            const testName = 'Jane';
+            expect(testName).toEqual(engineerTest.getName());
         })
     })
     describe('id',() => {
         it('Should return the name you give', () => {
-            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer', 'engineerGit');
-            const testId = '1';
-            expect(testId).toEqual(engineerTest.testId());
+            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer');
+            const testId = '4';
+            expect(testId).toEqual(engineerTest.getId());
         })
     })
     describe('email',() => {
         it('Should return the name you give', () => {
-            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer', 'engineerGit');
+            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer');
             const testEmail = 'engineer@protonmail.com';
-            expect(testEmail).toEqual(engineerTest.testEmail());
+            expect(testEmail).toEqual(engineerTest.getEmail());
         })
     })
     describe('position',() => {
         it('Should return the name you give', () => {
-            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer', 'engineerGit');
-            const testPosition = 'engineer';
-            expect(testPosition).toEqual(engineerTest.testPosition());
+            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer');
+            const testPosition = 'Engineer';
+            expect(testPosition).toEqual(engineerTest.getPosition());
         })
     })
     describe('gitHubId',() => {
         it('Should return the name you give', () => {
-            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer', 'engineerGit');
-            const testGitId = 'engineerGit';
-            expect(testGitId).toEqual(engineerTest.testGitId());
+            const engineerTest = new Engineer('Jane', '4', 'engineer@protonmail.com', 'engineer');
+            const testGitId = 'engineer';
+            expect(testGitId).toEqual(engineerTest.getGitHubId());
         })
     })
 })
