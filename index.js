@@ -108,7 +108,7 @@ function init() {
     console.log(init);
     inquirer.prompt(employee).then((choices) => {
         console.log(employee);
-        if(choices.add === "Add member") {
+        if(choices.add === "add a member") {
             addMember();
         } else {
             createHTML();
@@ -116,47 +116,43 @@ function init() {
     })
     };
 
-
-
     function addMember() {
         console.log(addMember);
         inquirer.prompt(role).then((choices) => {
           if (choices.role === "Manager") {
             inquirer.prompt(manager).then((answers) => {
-              let managerObj = new Manager(
-                // choices.role,
+              let newManager = new Manager(
                 answers.name,
                 answers.id,
                 answers.email,
                 answers.position,
                 answers.phone,
               );
-              buildTeam.push(managerObj);
+              buildTeam.push(newManager);
               init();
             });
           } else if (choices.role === "Engineer") {
             inquirer.prompt(engineer).then((answers) => {
-              let engineerObj = new Engineer(
+              let newEngineer = new Engineer(
                 answers.name,
                 answers.id,
                 answers.email,
                 answers.position,
                 answers.gitHubId,
               );
-              buildTeam.push(engineerObj);
-              console.log(engineerObj);
+              buildTeam.push(newEngineer);
               init();
             });
           } else if (choices.role === "Intern") {
             inquirer.prompt(intern).then((answers) => {
-              let internObj = new Intern(
+              let newIntern = new Intern(
                 answers.name,
                 answers.id,
                 answers.email,
                 answers.school,
                 answers.position,
               );
-              buildTeam.push(internObj);
+              buildTeam.push(newIntern);
               init();
             });
           } else {
@@ -166,7 +162,6 @@ function init() {
       }
 
       init();
-
 
     function createHTML () {
          if(!fs.existsSync(OUTPUT_DIR)) {
