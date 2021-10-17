@@ -7,9 +7,6 @@ const manager = require('./team/manager');
 const engineer = require('./team/engineer');
 const intern = require('./team/intern');
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
-
 let buildTeam = [];
 
 const employee = [
@@ -21,7 +18,7 @@ const employee = [
         }
 ];
 
-const role = [
+const position = [
     {
         type: "list",
         message: "What is your position?",
@@ -101,21 +98,19 @@ const engineer = [
 ];
 
 function init() {
-    console.log(init);
     inquirer.prompt(employee).then((choices) => {
         console.log(employee);
-        if(choices.add === "add a member") {
-            addMember();
+        if(choices.add === "add a member to your team") {
+            addTeam();
         } else {
             makeHTML();
         }
     })
     };
 
-    function addMember() {
-        console.log(addMember);
-        inquirer.prompt(role).then((choices) => {
-          if (choices.role === "Manager") {
+    function addTeam() {
+        inquirer.prompt(position).then((choices) => {
+          if (choices.position === "Manager") {
             inquirer.prompt(manager).then((answers) => {
               let newManager = new Manager(
                 answers.name,
@@ -127,7 +122,7 @@ function init() {
               buildTeam.push(newManager);
               init();
             });
-          } else if (choices.role === "Engineer") {
+          } else if (choices.position === "Engineer") {
             inquirer.prompt(engineer).then((answers) => {
               let newEngineer = new Engineer(
                 answers.name,
@@ -139,7 +134,7 @@ function init() {
               buildTeam.push(newEngineer);
               init();
             });
-          } else if (choices.role === "Intern") {
+          } else if (choices.position === "Intern") {
             inquirer.prompt(intern).then((answers) => {
               let newIntern = new Intern(
                 answers.name,
@@ -159,4 +154,60 @@ function init() {
 
       init();
 
-      function makeHTML() {};
+      function makeHTML (buildTeam) {
+        let renderPage;
+        for(i = 0; i < buildTeam.length; i++){
+            if (buildTeam[i].position == 'Manager'){
+                managerCard();
+            } else if (buildTeam[i].position == 'Intern') {
+                internCard();
+            } else if (buildTeam[i].position == 'Engineer') {
+                engineerCard();
+            }
+        }
+      }
+
+      function managerCard(data){
+          var managerText = `<div class="row">
+          <div class="col s12">
+              <div class="card-content">
+                  <span class="title">${data.getPosition}</span>
+                  <p>Name: ${data.getName()}</p>
+                  <p>ID: ${data.getId()}</p>
+                  <p>Email: ${data.getEmail()}</p>
+              </div>
+          </div>
+      </div>`
+
+      renderPage = managerText;
+      }
+      function internCard(data){
+          var internText = `<div class="row">
+          <div class="col s12">
+              <div class="card-content">
+                  <span class="title">${data.getPosition}</span>
+                  <p>Name: ${data.getName()}</p>
+                  <p>ID: ${data.getId()}</p>
+                  <p>Email: ${data.getEmail()}</p>
+              </div>
+          </div>
+      </div>`
+
+      renderPage += internText;
+      }
+
+      function engineerCard(data){
+        var engineerText = `<div class="row">
+        <div class="col s12">
+            <div class="card-content">
+                <span class="title">${data.getPosition}</span>
+                <p>Name: ${data.getName()}</p>
+                <p>ID: ${data.getId()}</p>
+                <p>Email: ${data.getEmail()}</p>
+            </div>
+        </div>
+    </div>`
+
+    renderPage += engineerText;
+    }
+    return renderPage;
