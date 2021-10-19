@@ -1,7 +1,6 @@
 // The packages we need, the classes we need
 
 const inquirer = require("inquirer");
-const writeFileAsync = util.promisify(fs.writeFile);
 const fs = require("fs");
 const util = require('util');
 
@@ -179,11 +178,12 @@ function managerQuestions(){
 
 // The choices, once made, are fed through the following function to create the 'cards' that will display their information.
 
-function createEmployeeCard(buildTeam){
-    let cardTemplate = '';
+function createEmployeeCard(){
+    let makeCard = '';
     for(i = 0; i < buildTeam.length; i++){
-        console.log(buildTeam[i].getPosition())
-         cardTemplate = cardTemplate + `<div class="d-flex p-2 justify-content-center">
+        console.log(buildTeam[i].position)
+        if (buildTeam[i].position === 'Manager') {
+            makeCard += `<div class="d-flex p-2 justify-content-center">
          <div class="card mb-5 mt-5 m-1 bg-white rounded" style="width: 18rem;">
          <div class="card-body"
             style="background-color:rgb(204,255,102);
@@ -196,11 +196,48 @@ function createEmployeeCard(buildTeam){
                 <li class="list-group-item">
                 Email: <a href="mailto: ${buildTeam[i].email}"> ${buildTeam[i].email}</a></li>
                 <li class="list-group-item">${buildTeam[i].getPhoneNumber()}</li>
+            </ul>
+         </div>
+        </div>`
+        } else if (buildTeam[i].position === 'Engineer') {
+         makeCard += `<div class="d-flex p-2 justify-content-center">
+         <div class="card mb-5 mt-5 m-1 bg-white rounded" style="width: 18rem;">
+         <div class="card-body"
+            style="background-color:rgb(204,255,102);
+            color:(170,153,255)">
+                <h4 class="card-title p-1">${buildTeam[i].name}</h4>
+                <h5 class="card-text">${buildTeam[i].getPosition()}</h5>
+         </div>
+            <ul class="list-group list-group-flush p-3">
+                <li class="list-group-item">ID: ${buildTeam[i].id}</li>
+                <li class="list-group-item">
+                Email: <a href="mailto: ${buildTeam[i].email}"> ${buildTeam[i].email}</a></li>
                 <li class="list-group-item">${buildTeam[i].getGitHubId()}</li>
             </ul>
          </div>
         </div>`
+        } else if (buildTeam[i].position === 'Intern') {
+            makeCard += `<div class="d-flex p-2 justify-content-center">
+         <div class="card mb-5 mt-5 m-1 bg-white rounded" style="width: 18rem;">
+         <div class="card-body"
+            style="background-color:rgb(204,255,102);
+            color:(170,153,255)">
+                <h4 class="card-title p-1">${buildTeam[i].name}</h4>
+                <h5 class="card-text">${buildTeam[i].getPosition()}</h5>
+         </div>
+            <ul class="list-group list-group-flush p-3">
+                <li class="list-group-item">ID: ${buildTeam[i].id}</li>
+                <li class="list-group-item">
+                Email: <a href="mailto: ${buildTeam[i].email}"> ${buildTeam[i].email}</a></li>
+                <li class="list-group-item">${buildTeam[i].getSchool()}</li>
+            </ul>
+         </div>
+        </div>`
+        }
     }
+    return makeCard;
 }
+
+
 
 init();
