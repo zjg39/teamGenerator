@@ -16,6 +16,13 @@ const intern = require('./team/intern');
 let buildTeam = [];
 
 
+// Init function containing the prompt sequence
+
+function init(){
+    promptSequence();
+}
+
+
 // Begin prompt sequence for user
 
 function promptSequence() {
@@ -75,7 +82,7 @@ function internQuestions(){
         } else if (response.addMember === 'Manager') {
             managerQuestions();
         } else {
-            creatEmployeeCard();
+            createEmployeeCard();
         }
     })
 }
@@ -111,8 +118,8 @@ function engineerQuestions(){
             choices: ['Intern', 'Engineer', 'Manager', 'I don\'t need another employee for my team.']
         }
     ]).then(response =>{
-        let addMemberIntern = new engineer(response.name, response.id, response.email, response.gitHubId);
-        buildTeam.push(addMemberIntern);
+        let addMemberEngineer = new engineer(response.name, response.id, response.email, response.gitHubId);
+        buildTeam.push(addMemberEngineer);
         if (response.addMember === 'Intern') {
             internQuestions();
         } else if (response.addMember === 'Engineer') {
@@ -120,7 +127,80 @@ function engineerQuestions(){
         } else if (response.addMember === 'Manager') {
             managerQuestions();
         } else {
-            creatEmployeeCard();
+            createEmployeeCard();
         }
     })
 }
+
+// If the user chooses a Manager for the team, the following code is executed.
+
+function managerQuestions(){
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the name of the Manager?'
+        },
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is the employee ID of the Manager?'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is the Manager\'s email address?'
+        },
+        {
+            type: 'input',
+            name: 'phone',
+            message: 'What is the Manager\'s phone number?'
+        },
+        {
+            type: 'list',
+            name: 'addMember',
+            message: ' Would you like to add another employee to your team?',
+            choices: ['Intern', 'Engineer', 'Manager', 'I don\'t need another employee for my team.']
+        }
+    ]).then(response =>{
+        let addMemberManager = new manager(response.name, response.id, response.email, response.phone);
+        buildTeam.push(addMemberManager);
+        if (response.addMember === 'Intern') {
+            internQuestions();
+        } else if (response.addMember === 'Engineer') {
+            engineerQuestions();
+        } else if (response.addMember === 'Manager') {
+            managerQuestions();
+        } else {
+            createEmployeeCard();
+        }
+    })
+}
+
+// The choices, once made, are fed through the following function to create the 'cards' that will display their information.
+
+function createEmployeeCard(buildTeam){
+    let cardTemplate = '';
+    for(i = 0; i < buildTeam.length; i++){
+        console.log(buildTeam[i].getPosition())
+         cardTemplate = cardTemplate + `<div class="d-flex p-2 justify-content-center">
+         <div class="card mb-5 mt-5 m-1 bg-white rounded" style="width: 18rem;">
+         <div class="card-body"
+            style="background-color:rgb(204,255,102);
+            color:(170,153,255)">
+                <h4 class="card-title p-1">${buildTeam[i].name}</h4>
+                <h5 class="card-text">${buildTeam[i].getPosition()}</h5>
+         </div>
+            <ul class="list-group list-group-flush p-3">
+                <li class="list-group-item">ID: ${buildTeam[i].id}</li>
+                <li class="list-group-item">
+                Email: <a href="mailto: ${buildTeam[i].email}"> ${buildTeam[i].email}</a></li>
+                <li class="list-group-item">${buildTeam[i].getPhoneNumber()}</li>
+                <li class="list-group-item">${buildTeam[i].getGitHubId()}</li>
+            </ul>
+         </div>
+        </div>`
+    }
+}
+
+init();
