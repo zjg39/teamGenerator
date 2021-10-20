@@ -235,24 +235,11 @@ function createEmployeeCard(){
         </div>`
         }
     }
-    return makeCard;
-    function makePage(buildTeam){
-        fs.writeFile('teamPage.html', writePage(buildTeam), (err) =>
-        err ? console.log(err) : console.log('HTML file created'))
+    fs.appendFile('./team/teamPage.html', makeCard, err => {
+        if (err) console.log(err);
+        else console.log('You have made your team! Find in the teamPage.html file, in the team folder!')
+    }) 
     }
-}
 
-function writePage(buildTeam){
-    return `<!DOCTYPE html>
-    <html lang = 'en'>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    </html>`
-}
+
 init();
