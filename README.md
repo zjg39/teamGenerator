@@ -1,7 +1,7 @@
 # teamGenerator
 
 
-![alt text](teamGenerator/assets/screenshotTeamGenerator.png "A shot of the finished product")
+![screenshot of successful launch](teamGenerator/assets/screenshotTeamGenerator.png "A shot of the finished product")
 
 ### To use:
 
